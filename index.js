@@ -26,13 +26,13 @@ const rl = readline.createInterface({
 });
 const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-CFonts.say("Zyy Pairing", {
+CFonts.say("InfinityAI Pairing", {
   font: "tiny",
   align: "center",
   colors: ["system"],
 });
 CFonts.say(
-  "Simple To Connect Whatsapp Bot Use Pairing Code\nWith Baileys Library\n\nGithub : https://github.com/rizzlogy/zyypairing",
+  "Connect your Whatsapp to InfinityAI. A simple WhatsApp bot using Baileys library",
   {
     colors: ["system"],
     font: "console",
@@ -67,7 +67,7 @@ async function ZyyPairing() {
     if (pairingCode && !socket.authState.creds.registered) {
       let phoneNumber;
       phoneNumber = await question(
-        chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)),
+        chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number Starting with country code : `)),
       );
       phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
 
@@ -93,7 +93,7 @@ async function ZyyPairing() {
         let code = await socket.requestPairingCode(phoneNumber);
         code = code?.match(/.{1,4}/g)?.join("-") || code;
         console.log(
-          chalk.black(chalk.bgGreen(`Your Pairing Code : `)),
+          chalk.black(chalk.bgGreen(`Your Pairing Code is : `)),
           chalk.black(chalk.white(code)),
         );
       }, 3000);
@@ -110,7 +110,7 @@ async function ZyyPairing() {
 
           await socket.sendMessage(
             socket.user.id,
-            { text: "Upload this session to ur bot multi auth state" },
+            { text: "Upload this session to your infinity folder in your forked repo" },
             { quoted: file },
           );
 
